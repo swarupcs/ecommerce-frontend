@@ -25,7 +25,7 @@ const CartItem = () => {
       <div>
       {productData?.map((item: Products) => (
           <div
-            key={item._id}
+            key={item.id}
             className="w-full bg-white p-4 flex flex-col md:flex-row items-center justify-between gap-4"
           >
             <div className="flex items-center gap-x-3 w-full md:w-1/3">

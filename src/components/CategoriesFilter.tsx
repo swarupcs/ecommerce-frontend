@@ -3,19 +3,33 @@
 
 import React, { useEffect, useState } from "react";
 import { getProducts } from "@/helpers";
+import { Products } from "../../type" // Adjust the import path according to your project structure
 
-const CategoriesFilter = ({ onSelectCategory, onSelectBrand }) => {
-  const [categories, setCategories] = useState([]);
-  const [brands, setBrands] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedBrand, setSelectedBrand] = useState(null);
+
+interface Product {
+  category: string;
+  brand: string;
+}
+
+// Define the interface directly within the component file
+interface CategoriesFilterProps {
+  onSelectCategory: (category: string | null) => void;
+  onSelectBrand: (brand: string | null) => void;
+}
+
+const CategoriesFilter: React.FC<CategoriesFilterProps> = ({ onSelectCategory, onSelectBrand }) => {
+  const [categories, setCategories] = useState<string[]>([]);
+  const [brands, setBrands] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getProducts();
-        const uniqueCategories = [...new Set(data.products.map((product) => toTitleCase(product.category)))];
-        const uniqueBrands = [...new Set(data.products.map((product) => product.brand))];
+// Map products to unique categories and brands
+const uniqueCategories = [...new Set<string>(data.products.map((product: Products) => toTitleCase(product.category)))];
+const uniqueBrands = [...new Set<string>(data.products.map((product: Products) => product.brand))];
         setCategories(uniqueCategories);
         setBrands(uniqueBrands);
       } catch (error) {
@@ -27,11 +41,11 @@ const CategoriesFilter = ({ onSelectCategory, onSelectBrand }) => {
   }, []);
 
   // Function to convert string to title case
-  const toTitleCase = (str) => {
+  const toTitleCase = (str: string) => {
     return str.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
   };
 
-  const handleCategoryChange = (category) => {
+  const handleCategoryChange = (category: string) => {
     const lowerCaseCategory = category.toLowerCase();
     if (lowerCaseCategory === selectedCategory) {
       setSelectedCategory(null);
@@ -42,7 +56,7 @@ const CategoriesFilter = ({ onSelectCategory, onSelectBrand }) => {
     }
   };
 
-  const handleBrandChange = (brand) => {
+  const handleBrandChange = (brand: string) => {
     if (brand === selectedBrand) {
       setSelectedBrand(null);
       onSelectBrand(null);

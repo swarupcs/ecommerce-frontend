@@ -24,7 +24,7 @@ const Footer = () => {
             pariatur aperiam. Delectus consectetur maxime quidem veniam,
             corporis.
           </p>
-          <div className="flex items-center gap-x-4">
+          {/* <div className="flex items-center gap-x-4">
             <a href="#" target="_blank">
               <span className="socialLink">
                 <BsYoutube />
@@ -50,36 +50,10 @@ const Footer = () => {
                 <BsReddit />
               </span>
             </a>
-          </div>
+          </div> */}
         </div>
         <div>
-          <p className="text-lg">Laset posts</p>
-          <ul className="text-sm font-light mt-2 flex flex-col gap-y-2">
-            <li className="flex flex-col">
-              <span className="text-slate hover:text-orange-600 cursor-pointer duration-200">
-                Where Music Is Headed Next
-              </span>
-              <span className="text-orange-600">January 31, 2022</span>
-            </li>
-            <li className="flex flex-col">
-              <span className="text-slate hover:text-orange-600 cursor-pointer duration-200">
-                Where Music Is Headed Next
-              </span>
-              <span className="text-orange-600">January 31, 2022</span>
-            </li>
-            <li className="flex flex-col">
-              <span className="text-slate hover:text-orange-600 cursor-pointer duration-200">
-                Where Music Is Headed Next
-              </span>
-              <span className="text-orange-600">January 31, 2022</span>
-            </li>
-            <li className="flex flex-col">
-              <span className="text-slate hover:text-orange-600 cursor-pointer duration-200">
-                Where Music Is Headed Next
-              </span>
-              <span className="text-orange-600">January 31, 2022</span>
-            </li>
-          </ul>
+
         </div>
         <div>
           <p className="text-lg">Links</p>
@@ -94,7 +68,7 @@ const Footer = () => {
                 Cart
               </li>
             </Link>
-            <Link href={"/about"}>
+            <Link href={"/"}>
               <li className="hover:text-orange-500 cursor-pointer duration-200">
                 About
               </li>

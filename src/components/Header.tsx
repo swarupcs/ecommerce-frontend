@@ -21,8 +21,17 @@ const Header = () => {
   const { data: session } = useSession();
   const { productData } = useSelector((state: StateProps) => state.shopping);
   const [totalAmt, setTotalAmt] = useState(0);
+  const [totalQuantity, setTotalQuantity] = useState(0);
 
 
+  // useEffect(() => {
+  //   let qty = 0;
+  //   productData.forEach((item: Products) => {
+  //     console.log(item?.quantity);
+
+  //   })
+
+  // }, [productData])
 
   useEffect(() => {
     if (session) {
@@ -40,11 +49,18 @@ const Header = () => {
 
   useEffect(() => {
     let amt = 0;
+    let qty = 0;
     productData.map((item: Products) => {
       amt += item.price * item.quantity;
+      qty += item.quantity;
       return;
     });
     setTotalAmt(amt);
+    setTotalQuantity(qty);
+        // console.log("Product Names and Quantities:");
+        // productData.forEach((item: Products) => {
+        //   console.log(`${item?.title} ---- Quantity: ${item?.quantity}`);
+        // });
   }, [productData]);
 
   return (
@@ -73,7 +89,10 @@ const Header = () => {
               <FormattedPrice amount={totalAmt ? totalAmt : 0} />
             </p>
             <span className="bg-white text-orange-600 rounded-full text-xs font-semibold absolute -right-2 -top-1 w-5 h-5 flex items-center justify-center shadow-xl shadow-black">
-              {productData ? productData?.length : 0}
+              {/* {productData ? productData?.length : 0} */}
+              {totalQuantity}
+              {/* {console.log(productData)} */}
+              
             </span>
           </div>
         </Link>

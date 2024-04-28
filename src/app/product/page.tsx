@@ -36,7 +36,7 @@ const ProductPage = ({ searchParams }: Props) => {
     return (
         <div>
             <Container>
-                {console.log(product)}
+                
                 {product && <SingleProduct product={product} />}
                 {/* <div>
                     <p className="text-xl py-1 font-semibold">Tranding Products</p>
